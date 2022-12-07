@@ -20,10 +20,12 @@ public class WorkerController : MonoBehaviour
     private static readonly int Exhausted = Animator.StringToHash("exhausted");
     private static readonly int Sleeping = Animator.StringToHash("sleeping");
     private Animator _animator;
+    public AudioSource _audioSource;
 
     void Start()
     {
-        _animator = gameObject.GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
         powerTime = new Random().NextDouble() * (maxPowerTime - minPowerTime) + minPowerTime;
     }
 
@@ -63,6 +65,7 @@ public class WorkerController : MonoBehaviour
 
     private void AwakeWorker()
     {
+        _audioSource.Play();
         status = Status.Awake;
         _animator.SetBool(Exhausted, false);
         _animator.SetBool(Sleeping, false);

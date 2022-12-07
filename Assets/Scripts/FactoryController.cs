@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class FactoryController : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class FactoryController : MonoBehaviour
     
     void Start()
     {
+        Cursor.visible = false;
         foreach (GameObject worker in workers)
         {
             _workers.Add(worker.gameObject.GetComponentInChildren<WorkerController>());
